@@ -3,4 +3,4 @@ project(DataStructre C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(DataStructre BinaryTree.c BinaryTree.h)
+add_executable(DataStructre BinaryTree.c BinaryTree.h BinaryTreeTest.c)
