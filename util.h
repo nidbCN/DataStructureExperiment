@@ -1,8 +1,6 @@
-//
-// Created by Gaein_nidb on 2021/12/3.
-//
+#ifndef UTIL_H
+#define UTIL_H
 
-#ifndef DATASTRUCTRE_UTIL_H
-#define DATASTRUCTRE_UTIL_H
+#define new(T) ((T*)malloc(sizeof(T)))
 
-#endif //DATASTRUCTRE_UTIL_H
+#endif // UTIL_H
