@@ -20,7 +20,6 @@ void *output(void *data) {
 }
 
 
-
 int main() {
     message("Pre-order createList binary tree, please input");
 

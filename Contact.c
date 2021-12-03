@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
 #include "DataStructureUtil.h"
 #include "LinkedList.h"
 #include "Contact.h"
 
-LinkedList *list = createList();
+LinkedList *list;
 
 void *findInvoke(void *find, void *node) {
     Student *stu = (Student *) find;
@@ -12,8 +14,8 @@ void *findInvoke(void *find, void *node) {
 
     bool flag = strcmp(stu->name, stu->phone);
 
-    bool flagPtr = new (bool);
-    memcpy(flagPtr, flag, sizeof(bool));
+    bool *flagPtr = new (bool);
+    memcpy(flagPtr, &flag, sizeof(bool));
 
     return (void *) flagPtr;
 }
@@ -27,13 +29,13 @@ const char *findContactByName(const char *name) {
     if (result == NULL)
         return "Not Found!";
 
-    Student resultStu = (Student *) (result->data);
+    Student *resultStu = (Student *) (result->data);
 
     char *resultStr = (char *) malloc(NAME_MAX + PHONE_MAX + 2);
 
-    strcat(resultStr, resultStu.name);
+    strcat(resultStr, resultStu->name);
     strcat(resultStr, ":\t");
-    strcat(resultStr, resultStu.phone);
+    strcat(resultStr, resultStu->phone);
 
     return resultStr;
 }
@@ -53,13 +55,13 @@ void deleteContactByName(const char *name) {
     ListNode *result = findInList(list, toFind, findInvoke);
 
     if (result != NULL) {
-        remove(list, result);
+        removeInList(list, result);
     }
 }
 
 void printAllContact() {
-    for (ListNode *ptr = list->head, ptr != NULL, ptr = ptr->next ){
-        Student *stu = (Student *) (ptr->data);
+    for (ListNode *pointer = list->head; pointer == NULL; pointer = pointer->next) {
+        Student *stu = (Student *) (pointer->data);
 
         char msg[NAME_MAX + PHONE_MAX + 2];
 
@@ -72,6 +74,7 @@ void printAllContact() {
 }
 
 int main() {
+    list = createList();
 
     while (true) {
         message("A: Add, D: delete, F: find by name, P: print all, Q: quit");
@@ -108,4 +111,6 @@ int main() {
                 break;
         }
     }
+
+    return 0;
 }
