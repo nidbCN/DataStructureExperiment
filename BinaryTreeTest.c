@@ -5,7 +5,7 @@
 #include "BinaryTree.h"
 
 #define T char
-#define NODE_COUNT (10)
+
 
 void *getInput() {
     T input = (T) getchar();
@@ -13,27 +13,29 @@ void *getInput() {
     void *inputPtr = new(T);
     memcpy(inputPtr, &input, sizeof(T));
 
-    return input == EOF ? NULL : (void *) inputPtr;
+    return (input == '#' || input == '\n') ? NULL : (void *) inputPtr;
 }
 
 void *output(void *data) {
     printf(" %c", *((T *) data));
 }
 
+void message(const char *str) {
+    printf("\n%s:\n", str);
+}
+
 int main() {
-    for (int i = NODE_COUNT; i > 0; --i) {
-        printf("%s", "Pre-order create binary tree, please input\n:");
+    message("Pre-order create binary tree, please input");
 
-        BinaryTree *tree = createBinaryTree(getInput, sizeof(T));
+    BinaryTree *tree = createBinaryTree(getInput, sizeof(T));
 
-        printf("\n%s:\n", "Pre-order");
-        preOrderTree(tree, output);
+    message("Pre-order");
+    preOrderTree(tree, output);
 
-        printf("\n%s:\n", "In-order");
-        inOrderTree(tree, output);
+    message("In-order");
+    inOrderTree(tree, output);
 
-        printf("\n%s:\n", "Post-order");
-        postOrderTree(tree, output);
-    }
+    message("Post-order");
+    postOrderTree(tree, output);
     return 0;
 }
