@@ -3,7 +3,6 @@
  * Open source under GPLv3, Free as in Freedom
  */
 #include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
 #include "BinaryTree.h"
 
@@ -98,22 +97,4 @@ void postOrderTree(BinaryTree *tree, void* outputInvoke()) {
     if (tree != NULL) {
         postOrderNode(tree->root, outputInvoke);
     }
-}
-
-int main() {
-    int n = 10;
-    while (n--) {
-        struct TreeNode *t;
-        cout << "前序建立二叉树" << endl;
-        cout << "请输入ABD#F###CE#G### 或者AB#D##C## " << endl;
-        t = createBinaryTreeNode();
-        cout << "前序遍历二叉树" << endl;
-        preOrderNode(t);
-        cout << "中序遍历二叉树" << endl;
-        inorder(t);
-        cout << "后序遍历二叉树" << endl;
-        postorder(t);
-        getchar();
-    }
-    return 0;
 }
