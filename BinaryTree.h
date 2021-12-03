@@ -12,7 +12,8 @@ typedef struct binaryTree {
     size_t dataSize;
 } BinaryTree;
 
-#define new(T) (T*)malloc(sizeof(T))
+
+#define lambda(name),(arg)->(func) void*name(arg){func}
 
 /*
  * Create a binary tree with data which has size 'size'.

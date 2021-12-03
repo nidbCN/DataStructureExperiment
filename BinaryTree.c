@@ -17,12 +17,6 @@ void inOrderNode(TreeNode *node, void* outputInvoke(void* data));
 // Post-order from root node
 void postOrderNode(TreeNode *node, void* outputInvoke(void* data));
 
-// Clear tree node
-void clear(TreeNode *node) {
-    node->leftChild = NULL;
-    node->rightChild = NULL;
-}
-
 // Create binary tree
 BinaryTree *createBinaryTree(void *dataInvoke(), size_t size) {
     BinaryTree *newTree = new(BinaryTree);
