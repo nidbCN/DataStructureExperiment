@@ -4,8 +4,8 @@
  */
 #include <stdlib.h>
 #include <string.h>
-#include "DataStructureUtil.h"
-#include "BinaryTree.h"
+#include "../Inc/DataStructureUtil.h"
+#include "../Inc/BinaryTree.h"
 
 // Private function defines
 

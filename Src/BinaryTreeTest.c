@@ -6,6 +6,10 @@
 
 #define T char
 
+void message(const char *str) {
+    printf("\n%s:\n", str);
+}
+
 void *getInput() {
     T input = (T) getchar();
 

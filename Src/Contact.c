@@ -2,15 +2,14 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-#include "DataStructureUtil.h"
-#include "LinkedList.h"
-#include "Contact.h"
+#include "../Inc/DataStructureUtil.h"
+#include "../Inc/LinkedList.h"
+#include "../Inc/Contact.h"
 
 LinkedList *list;
 
 void *findInvoke(void *find, void *node) {
     Student *stu = (Student *) find;
-    Student *item = (Student *) node;
 
     bool flag = strcmp(stu->name, stu->phone);
 
@@ -20,24 +19,19 @@ void *findInvoke(void *find, void *node) {
     return (void *) flagPtr;
 }
 
-const char *findContactByName(const char *name) {
+void findContactByName(const char *name) {
     Student *toFind = new(Student);
     strcpy(toFind->name, name);
 
     ListNode *result = findInList(list, toFind, findInvoke);
 
-    if (result == NULL)
-        return "Not Found!";
+    if (result == NULL) {
+        printf("%s\n", "Not Found!");
+    } else {
+        Student *resultStu = (Student *) (result->data);
 
-    Student *resultStu = (Student *) (result->data);
-
-    char *resultStr = (char *) malloc(NAME_MAX + PHONE_MAX + 2);
-
-    strcat(resultStr, resultStu->name);
-    strcat(resultStr, ":\t");
-    strcat(resultStr, resultStu->phone);
-
-    return resultStr;
+        printf("%s:\t%s\n", resultStu->name, resultStu->phone);
+    }
 }
 
 void addContact(const char *name, const char *phone) {
@@ -60,16 +54,10 @@ void deleteContactByName(const char *name) {
 }
 
 void printAllContact() {
-    for (ListNode *pointer = list->head; pointer == NULL; pointer = pointer->next) {
+    for (ListNode *pointer = list->head; pointer != NULL; pointer = pointer->next) {
         Student *stu = (Student *) (pointer->data);
 
-        char msg[NAME_MAX + PHONE_MAX + 2];
-
-        strcat(msg, stu->name);
-        strcat(msg, ":\t");
-        strcat(msg, stu->phone);
-
-        message(msg);
+        printf("%s:\t%s\n", stu->name, stu->phone);
     }
 }
 
@@ -77,31 +65,34 @@ int main() {
     list = createList();
 
     while (true) {
-        message("A: Add, D: delete, F: find by name, P: print all, Q: quit");
+        printf("%s\n", "A: Add, D: delete, F: find by name, P: print all, Q: quit");
 
-        char op = getchar();
+        char op = EOF;
+        while (op == '\n' || op == 0 || op == ' ' || op == EOF) {
+            op =(char ) getchar();
+        }
 
         char inputName[NAME_MAX];
         char inputPhone[PHONE_MAX];
 
         switch (op) {
             case 'A':
-                message("Input \"phone,name\"");
-                scanf("%s,%s", &inputName, &inputPhone);
+                printf("%s\n", "Input \"phone name\"");
+                scanf("%s %s", &inputName, &inputPhone);
 
                 addContact(inputName, inputPhone);
                 break;
             case 'D':
-                message("Input \"name\"");
+                printf("%s\n", "Input \"name\"");
                 scanf("%s", &inputName);
 
                 deleteContactByName(inputName);
                 break;
             case 'F':
-                message("Input \"name\"");
+                printf("%s\n", "Input \"name\"");
                 scanf("%s", &inputName);
 
-                message(findContactByName(inputName));
+                findContactByName(inputName);
                 break;
             case 'P':
                 printAllContact();
@@ -109,6 +100,8 @@ int main() {
             case 'Q':
                 return 0;
                 break;
+            default:
+                printf("%s\n", "UnKnow command");
         }
     }
 

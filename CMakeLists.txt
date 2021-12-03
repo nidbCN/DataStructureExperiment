@@ -3,4 +3,13 @@ project(DataStructure C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(DataStructure  BinaryTreeTest.c DataStructureUtil.h BinaryTree.c BinaryTree.h LinkedList.c LinkedList.h Contact.c DataStructureUtil.c Contact.h)
+add_library(BinaryTree STATIC Src/BinaryTree.c)
+add_library(LinkedList STATIC Src/LinkedList.c)
+
+include_directories(Inc)
+
+add_executable(BinaryTreeTest Src/BinaryTreeTest.c Src/DataStructureUtil.c)
+TARGET_LINK_LIBRARIES(BinaryTreeTest BinaryTree)
+
+add_executable(Contact Src/Contact.c Src/DataStructureUtil.c)
+TARGET_LINK_LIBRARIES(Contact LinkedList)

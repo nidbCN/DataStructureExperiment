@@ -1,8 +1,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "DataStructureUtil.h"
-#include "LinkedList.h"
+#include "../Inc/DataStructureUtil.h"
+#include "../Inc/LinkedList.h"
 
 LinkedList *createList() {
     LinkedList *list = new(LinkedList);
@@ -36,7 +36,7 @@ LinkedList *addLastToList(LinkedList *list, void *data, size_t size) {
 }
 
 ListNode *findInList(LinkedList *list, void *find, void *compare(void *val, void *node)) {
-    for (ListNode *pointer = list->head; pointer != list->tail; pointer = pointer->next) {
+    for (ListNode *pointer = list->head; pointer != NULL; pointer = pointer->next) {
         bool result = *((bool *) compare(find, pointer->data));
 
         if (result == true)

@@ -9,5 +9,4 @@ typedef struct student {
     char name[NAME_MAX];
 } Student;
 
-
 #endif //CONTACT_H
