@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "util.h"
+#include "DataStructureUtil.h"
 #include "BinaryTree.h"
 
 #define T char
@@ -20,9 +20,7 @@ void *output(void *data) {
     printf(" %c", *((T *) data));
 }
 
-void message(const char *str) {
-    printf("\n%s:\n", str);
-}
+
 
 int main() {
     message("Pre-order create binary tree, please input");

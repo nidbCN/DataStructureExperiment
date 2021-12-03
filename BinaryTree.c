@@ -4,21 +4,21 @@
  */
 #include <stdlib.h>
 #include <string.h>
-#include "util.h"
+#include "DataStructureUtil.h"
 #include "BinaryTree.h"
 
 // Private function defines
 
-// Create binary tree node
+// Create binary tree ListNode
 TreeNode *createBinaryTreeNode(void *dataInvoke(), size_t size);
 
-// Pre-order from root node
+// Pre-order from root ListNode
 void preOrderNode(TreeNode *node, void *outputInvoke(void *data));
 
-// In-order from root node
+// In-order from root ListNode
 void inOrderNode(TreeNode *node, void *outputInvoke(void *data));
 
-// Post-order from root node
+// Post-order from root ListNode
 void postOrderNode(TreeNode *node, void *outputInvoke(void *data));
 
 // Create binary tree
@@ -31,7 +31,7 @@ BinaryTree *createBinaryTree(void *dataInvoke(), size_t size) {
     return newTree;
 }
 
-// Create tree node
+// Create tree ListNode
 TreeNode *createBinaryTreeNode(void *dataInvoke(), size_t size) {
     // Invoke function to get data
     void *data = dataInvoke();
@@ -42,18 +42,17 @@ TreeNode *createBinaryTreeNode(void *dataInvoke(), size_t size) {
     TreeNode *newNode = new(TreeNode);
 
     newNode->data = malloc(size);
-    // Copy dataInvoke to node
+    // Copy dataInvoke to ListNode
     memcpy(newNode->data, data, size);
 
     newNode->leftChild = createBinaryTreeNode(dataInvoke, size);
     newNode->rightChild = createBinaryTreeNode(dataInvoke, size);
     return newNode;
-
 }
 
 void preOrderNode(TreeNode *node, void *outputInvoke(void *data)) {
     if (node != NULL) {
-        // Output value of this node
+        // Output value of this ListNode
         outputInvoke(node->data);
 
         preOrderNode(node->leftChild, outputInvoke);
@@ -71,7 +70,7 @@ void inOrderNode(TreeNode *node, void *outputInvoke(void *data)) {
     if (node != NULL) {
         inOrderNode(node->leftChild, outputInvoke);
 
-        // Output value of this node
+        // Output value of this ListNode
         outputInvoke(node->data);
 
         inOrderNode(node->rightChild, outputInvoke);
@@ -89,7 +88,7 @@ void postOrderNode(TreeNode *node, void *outputInvoke(void *data)) {
         postOrderNode(node->leftChild, outputInvoke);
         postOrderNode(node->rightChild, outputInvoke);
 
-        // Output value of this node
+        // Output value of this ListNode
         outputInvoke(node->data);
     }
 }
