@@ -4,7 +4,7 @@
 #include "DataStructureUtil.h"
 #include "LinkedList.h"
 
-LinkedList *create() {
+LinkedList *createList() {
     LinkedList *list = new(LinkedList);
 
     list->head = NULL;
@@ -13,7 +13,7 @@ LinkedList *create() {
     return list;
 }
 
-LinkedList *addLast(LinkedList *list, void *data, size_t size) {
+LinkedList *addLastToList(LinkedList *list, void *data, size_t size) {
     ListNode *newNode = new(ListNode);
 
     newNode->data = malloc(size);
@@ -35,7 +35,7 @@ LinkedList *addLast(LinkedList *list, void *data, size_t size) {
     return list;
 }
 
-ListNode *find(LinkedList *list, void *find, void *compare(void *val, void *node)) {
+ListNode *findInList(LinkedList *list, void *find, void *compare(void *val, void *node)) {
     for (ListNode *pointer = list->head; pointer != list->tail; pointer = pointer->next) {
         bool result = *((bool *) compare(find, pointer->data));
 
@@ -46,7 +46,7 @@ ListNode *find(LinkedList *list, void *find, void *compare(void *val, void *node
     return NULL;
 }
 
-LinkedList *remove(LinkedList *list, ListNode *node) {
+LinkedList *removeInList(LinkedList *list, ListNode *node) {
     if (node == list->head) {
         list->head = node->next;
         list->head->prev = NULL;

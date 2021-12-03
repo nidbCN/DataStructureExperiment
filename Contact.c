@@ -4,7 +4,7 @@
 #include "LinkedList.h"
 #include "Contact.h"
 
-LinkedList *list = create();
+LinkedList *list = createList();
 
 void *findInvoke(void *find, void *node) {
     Student *stu = (Student *) find;
@@ -22,7 +22,7 @@ const char *findContactByName(const char *name) {
     Student *toFind = new(Student);
     strcpy(toFind->name, name);
 
-    ListNode *result = find(list, toFind, findInvoke);
+    ListNode *result = findInList(list, toFind, findInvoke);
 
     if (result == NULL)
         return "Not Found!";
@@ -43,14 +43,14 @@ void addContact(const char *name, const char *phone) {
     strcpy(stu->name, name);
     strcpy(stu->phone, phone);
 
-    addLast(list, (void *) stu, sizeof(Student));
+    addLastToList(list, (void *) stu, sizeof(Student));
 }
 
-void deleteContactByName() {
+void deleteContactByName(const char *name) {
     Student *toFind = new(Student);
     strcpy(toFind->name, name);
 
-    ListNode *result = find(list, toFind, findInvoke);
+    ListNode *result = findInList(list, toFind, findInvoke);
 
     if (result != NULL) {
         remove(list, result);
@@ -81,23 +81,31 @@ int main() {
         char inputName[NAME_MAX];
         char inputPhone[PHONE_MAX];
 
-
-
-
         switch (op) {
             case 'A':
-                message("Input \"phone,name\", input \"e,e\" to exit");
-                scanf("%s,%s", %inputName, &inputPhone);
+                message("Input \"phone,name\"");
+                scanf("%s,%s", &inputName, &inputPhone);
 
+                addContact(inputName, inputPhone);
+                break;
+            case 'D':
+                message("Input \"name\"");
+                scanf("%s", &inputName);
+
+                deleteContactByName(inputName);
+                break;
+            case 'F':
+                message("Input \"name\"");
+                scanf("%s", &inputName);
+
+                message(findContactByName(inputName));
+                break;
+            case 'P':
+                printAllContact();
+                break;
+            case 'Q':
+                return 0;
+                break;
         }
-
-        do {
-            message("Input phone,name , input e to exit");
-            scanf("%s,%s", phone, name);
-
-            addLast(list,)
-        } while (*phone != 'e');
     }
-
-
 }

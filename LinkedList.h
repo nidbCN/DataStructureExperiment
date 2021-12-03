@@ -16,15 +16,15 @@ typedef struct linkedList {
 /*
  * Create a new LinkedList
  */
-LinkedList *create();
+LinkedList *createList();
 
 /*
  * Add a node at last
  */
-LinkedList *addLast(LinkedList *list, void *data, size_t size);
+LinkedList *addLastToList(LinkedList *list, void *data, size_t size);
 
-ListNode *find(LinkedList *list, void *find, void *compare(void *val, void *this));
+ListNode *findInList(LinkedList *list, void *find, void *compare(void *val, void *this));
 
-LinkedList *remove(LinkedList *list, ListNode *node);
+LinkedList *removeInList(LinkedList *list, ListNode *node);
 
 #endif // LINKED_LIST_H

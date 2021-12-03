@@ -6,7 +6,6 @@
 
 #define T char
 
-
 void *getInput() {
     T input = (T) getchar();
 
@@ -23,7 +22,7 @@ void *output(void *data) {
 
 
 int main() {
-    message("Pre-order create binary tree, please input");
+    message("Pre-order createList binary tree, please input");
 
     BinaryTree *tree = createBinaryTree(getInput, sizeof(T));
 
