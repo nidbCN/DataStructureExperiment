@@ -13,6 +13,19 @@ LinkedList *createList() {
     return list;
 }
 
+LinkedList *createListFromArray(void **array, int length, size_t sizeOfElement) {
+    LinkedList *list = new(LinkedList);
+
+    list->head = NULL;
+    list->tail = NULL;
+
+    for (int i = 0; i < length; ++i) {
+        addLastToList(list, array[i], sizeOfElement);
+    }
+
+    return list;
+}
+
 LinkedList *addLastToList(LinkedList *list, void *data, size_t size) {
     ListNode *newNode = new(ListNode);
 

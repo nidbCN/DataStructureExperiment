@@ -18,6 +18,8 @@ typedef struct linkedList {
  */
 LinkedList *createList();
 
+LinkedList *createListFromArray(void** array, int length, size_t sizeOfElement);
+
 /*
  * Add a node at last
  */
