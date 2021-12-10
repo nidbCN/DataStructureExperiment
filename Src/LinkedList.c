@@ -1,8 +1,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include "../Inc/DataStructureUtil.h"
-#include "../Inc/LinkedList.h"
+#include "DataStructureUtil.h"
+#include "LinkedList.h"
 
 LinkedList *createList() {
     LinkedList *list = new(LinkedList);

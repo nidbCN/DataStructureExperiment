@@ -2,9 +2,9 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../Inc/DataStructureUtil.h"
-#include "../Inc/LinkedList.h"
-#include "../Inc/Contact.h"
+#include "DataStructureUtil.h"
+#include "LinkedList.h"
+#include "Contact.h"
 
 LinkedList *list;
 
