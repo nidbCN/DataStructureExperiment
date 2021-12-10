@@ -26,6 +26,23 @@ LinkedList *createListFromArray(void **array, int length, size_t sizeOfElement) 
     return list;
 }
 
+LinkedList *addToList(LinkedList *list, void *data, size_t size) {
+    ListNode *newNode = new(ListNode);
+
+    newNode->data = malloc(size);
+    memcpy(newNode->data, data, size);
+    newNode->next = list->head;
+    newNode->prev = NULL;
+
+    if (list->tail == NULL) {
+        list->tail = newNode;
+    }
+
+    list->head = newNode;
+
+    return list;
+}
+
 LinkedList *addLastToList(LinkedList *list, void *data, size_t size) {
     ListNode *newNode = new(ListNode);
 

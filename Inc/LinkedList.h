@@ -20,6 +20,8 @@ LinkedList *createList();
 
 LinkedList *createListFromArray(void** array, int length, size_t sizeOfElement);
 
+LinkedList *addToList(LinkedList *list, void* data, size_t size);
+
 /*
  * Add a node at last
  */
