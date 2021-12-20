@@ -22,3 +22,5 @@ TARGET_LINK_LIBRARIES(Contact LinkedList)
 add_executable(GraphTest Src/GraphTest.c Src/DataStructureUtil.c)
 TARGET_LINK_LIBRARIES(GraphTest Graph LinkedList)
 
+add_executable(BookManager Src/BookManager.c)
+TARGET_LINK_LIBRARIES(BookManager Sort)
