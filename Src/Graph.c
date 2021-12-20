@@ -1,45 +1,41 @@
 #include <stdio.h>
 #include <string.h>
+#include <malloc.h>
 #include "Graph.h"
 #include "DataStructureUtil.h"
-#include "LinkedList.h"
-#include <malloc.h>
-#include <stdbool.h>
+#include "Queue.h"
 
-int visited[MAX];
 
 Graph *insertEdgeToGraph(Graph *graph, int nodeNum, int nextNodeNum) {
-    EdgeNode *newNode = new(EdgeNode);
-
-    newNode->next = graph->vertexArray[nextNodeNum - 1].edgeList;
-
-    addToList(graph->vertexArray[nodeNum - 1].edgeList, (void *) newNode, sizeof(EdgeNode));
+    addToList(graph->nodeArray[nodeNum - 1].nodeList, nextNodeNum - 1);
 
     return graph;
 }
 
-Graph *createGraph(int nodeCount, void *nodeDataInvoke(int index), int* edgeDataInvoke(), size_t size) {
+Graph *createGraph(int nodeCount, void *nodeDataInvoke(int), int *edgeDataInvoke(), size_t size) {
     Graph *newGraph = new(Graph);
 
     // Create a vertex node array.
-    VertexNode* newNodeArray = array(VertexNode, nodeCount);
+    GraphNode **newNodeArray = array(GraphNode*, nodeCount);
 
     // input node
     for (int i = 0; i < nodeCount; ++i) {
-        memcpy(&newNodeArray[i], nodeDataInvoke(i), size);
+        newNodeArray[i]->number = i;
+        memcpy(newNodeArray[i]->data, nodeDataInvoke(i), size);
+        newNodeArray[i]->nodeList = createList(int);
     }
 
     newGraph->nodeCount = nodeCount;
-    newGraph->vertexArray = newNodeArray;
+    newGraph->nodeArray = newNodeArray;
 
     // input edge
     while (true) {
-        void *edgeData = edgeDataInvoke();
+        int *edgeData = edgeDataInvoke();
         if (edgeData == NULL)
             break;
 
-        int node_i = *(int *) edgeData;
-        int node_j = *((int *) edgeData + 1);
+        int node_i = edgeData[0];
+        int node_j = edgeData[1];
 
         if (node_j > nodeCount || node_j > nodeCount) {
             return NULL;
@@ -51,107 +47,59 @@ Graph *createGraph(int nodeCount, void *nodeDataInvoke(int index), int* edgeData
     return newGraph;
 }
 
-void depthFirstSearch(Graph *graph, void *func()) {
-    bool visited[1000];
-}
+void depthFirstSearchInvoke(Graph *graph, int index, bool *visited, void *func(int)) {
+    LinkedList *nodeList = graph->nodeArray[index].nodeList;
+    traverseList(nodeList, $(bool, (int listIndex, ListNode* thisNode) {
+            int nodeNum = *(int*)thisNode->data;
 
-void depthFirstSearchInvoke(Graph *graph, void *func()) {
-
-}
-
-void breadthFirstSearch() {
-
-}
-
-void dfs(Graph g, int i) {
-    EdgeNode *p;
-    if (visited[i] == 0) {
-        visited[i] = 1;
-        printf("顶点%d ", i);
+            if (!visited[nodeNum]) {
+            func(nodeNum);
+            visited[nodeNum] = true;
     }
-    p = g.vertex[i].firstEdge->next;
-    while (p != NULL) {
-        if (!visited[p->value]) {
-            printf("顶点%d ", p->value);
-            visited[p->value] = 1;
-            //printf(" 访问%d", p->value);
-            dfs(g, p->value);
-        }
-        p = p->next;
-    }
+
+            return false;
+    }));
 }
 
-void DFS(Graph g) {
-    int index;
-    for (index = 0; index < graph.nodeCount; ++index) {
-        visited[index] = 0;
-    }
-    printf("开始进行深度优先搜索\n");
-    for (index = 0; index < graph.nodeCount; index++) {
-        if (!visited[index])
-            dfs(g, index);
-    }
-}
+void depthFirstSearch(Graph *graph, void *func(int)) {
+    bool *visited = array(bool, graph->nodeCount);
+    memset(visited, false, sizeof(bool) * graph->nodeCount);
 
-void bfs(Graph g, int i) {
-    int j;
-    EdgeNode *p;
-    //用列队进行bfs
-    int queue[MAX];
-    // FIFO
-    int front, rear;
-    front = rear = 0;
-    //证明被访问过
-    visited[i] = 1;
-    queue[rear++] = i; //将访问过的节点加入列队中
-    printf("顶点%d ", i);
-    while (rear > front) {
-        j = queue[front++];
-        p = graph.vertex[j].firstEdge;
-        while (p) {
-            if (visited[p->value] == 0) {
-                printf("顶点%d ", p->value);
-                queue[rear++] = p->value;
-                visited[p->value] = 1;
-            }
-            p = p->next;
+    for (int i = 0; i < graph->nodeCount; ++i) {
+        if (!visited[i]) {
+            visited[i] = true;
+            depthFirstSearchInvoke(graph, i, visited, func);
         }
     }
 }
 
-void BFS(Graph g) {
-    int index;
-    for (index = 0; index < graph.nodeCount; ++index) {
-        visited[index] = 0;
-    }
-    printf("开始进行广度优先搜索\n");
-    for (index = 0; index < graph.nodeCount; index++) {
-        if (!visited[index])
-            bfs(g, index);
-    }
-}
+void breadthFirstSearchInvoke(Graph *graph, int index, bool *visited, void func(int)) {
+    LinkedList *nodeList = graph->nodeArray[index].nodeList;
 
-//用来测试输入的图的形状，判断是否与输入的图的形状相同
-void print() {
-    int index = 0;
-    edgeNode *p;
-    for (index = 0; index < graph.nodeCount; index++) {
-        printf("%d子节点是: ", index);
-        p = graph.vertex[index].firstEdge;
-        while (p) {
-            printf(" %d ", p->value);
-            p = p->next;
+    Queue *queue = createQueue(int);
+    enqueue(queue, nodeList->head);
+
+    while (queue->count != 0) {
+        dequeue(queue);
+        traverseList(nodeList, $(bool, (int i, void* thisNode){
+                if (!visited[i]) {
+                func(i);
+                visited[i] = true;
+                dequeue(queue);
         }
-        puts("");
+                return false;
+        }));
     }
 }
 
-int main() {
-    Create();
-    DFS(graph);
-    puts("");
-    BFS(graph);
-    puts("");
-    //print();
-    return 0;
+void breadthFirstSearch(Graph *graph, void func(int)) {
+    bool *visited = array(bool, graph->nodeCount);
+    memset(visited, false, sizeof(bool) * graph->nodeCount);
+
+    for (int i = 0; i < graph->nodeCount; ++i) {
+        if (visited[i]) {
+            visited[i] = true;
+            breadthFirstSearchInvoke(graph, i, visited, func);
+        }
+    }
 }

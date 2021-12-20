@@ -5,24 +5,15 @@
 
 #define MAX 100
 
-typedef struct edgeNode {
-    void *data;
-    LinkedList *next;
-} EdgeNode;
-
-typedef struct vertexNode {
-    EdgeNode *firstEdge;
-    LinkedList *edgeList;
-} VertexNode;
+typedef struct graphNode {
+    int number;
+    void* data;
+    LinkedList *nodeList;
+} GraphNode;
 
 typedef struct graph {
-    VertexNode vertexNodes;
-    VertexNode vertex[MAX];
-
-    VertexNode *vertexArray;
-
+    GraphNode *nodeArray;
     int nodeCount;
-    int e;
 } Graph;
 
 // 插入边
