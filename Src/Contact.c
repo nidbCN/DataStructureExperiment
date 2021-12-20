@@ -8,15 +8,11 @@
 
 LinkedList *list;
 
-void *findInvoke(void *find, void *node) {
-    Student *stu = (Student *) find;
+bool findInvoke(void *find, void *node) {
+    Student *student = (Student *) find;
+    Student *current = (Student *) node;
 
-    bool flag = strcmp(stu->name, stu->phone);
-
-    bool *flagPtr = new (bool);
-    memcpy(flagPtr, &flag, sizeof(bool));
-
-    return (void *) flagPtr;
+    return (bool)strcmp(student->name, current->name);
 }
 
 void findContactByName(const char *name) {
@@ -69,7 +65,7 @@ int main() {
 
         char op = EOF;
         while (op == '\n' || op == 0 || op == ' ' || op == EOF) {
-            op =(char ) getchar();
+            op = (char) getchar();
         }
 
         char inputName[NAME_MAX];
@@ -78,19 +74,19 @@ int main() {
         switch (op) {
             case 'A':
                 printf("%s\n", "Input \"phone name\"");
-                scanf("%s %s", &inputName, &inputPhone);
+                scanf("%s %s", inputName, inputPhone);
 
                 addContact(inputName, inputPhone);
                 break;
             case 'D':
                 printf("%s\n", "Input \"name\"");
-                scanf("%s", &inputName);
+                scanf("%s", inputName);
 
                 deleteContactByName(inputName);
                 break;
             case 'F':
                 printf("%s\n", "Input \"name\"");
-                scanf("%s", &inputName);
+                scanf("%s", inputName);
 
                 findContactByName(inputName);
                 break;
