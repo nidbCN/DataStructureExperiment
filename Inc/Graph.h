@@ -28,6 +28,6 @@ typedef struct graph {
 // 插入边
 Graph *insertEdgeToGraph(Graph *graph, int nodeNum, int nextNodeNum);
 
-Graph *createGraph(int nodeCount, int edgeCount, void *nodeDataInvoke(), int *edgeDataInvoke(), size_t size);
+Graph *createGraph(int nodeCount, void *nodeDataInvoke(int index), int* edgeDataInvoke(), size_t size);
 
 #endif //GRAPH_H

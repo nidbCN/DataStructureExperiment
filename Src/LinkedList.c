@@ -14,19 +14,6 @@ LinkedList *createList() {
     return list;
 }
 
-LinkedList *createListFromArray(void **array, int length, size_t size) {
-    LinkedList *list = new(LinkedList);
-
-    list->head = NULL;
-    list->tail = NULL;
-
-    for (int i = 0; i < length; ++i) {
-        addLastToList(list, array[i], size);
-    }
-
-    return list;
-}
-
 LinkedList *addToList(LinkedList *list, void *data, size_t size) {
     ListNode *newNode = new(ListNode);
 
@@ -40,6 +27,7 @@ LinkedList *addToList(LinkedList *list, void *data, size_t size) {
     }
 
     list->head = newNode;
+    list->count++;
 
     return list;
 }
@@ -63,10 +51,15 @@ LinkedList *addLastToList(LinkedList *list, void *data, size_t size) {
         list->tail = newNode;
     }
 
+    list->count++;
+
     return list;
 }
 
-ListNode *findInList(LinkedList *list, void *find, bool compare(void *val, void *node)) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-parameter"
+
+ListNode *findInList(LinkedList *list, void *find, bool compare(void *, void *)) {
     return traverseList(list, $(bool, (int index, ListNode *thisNode){
             return compare(find, thisNode->data);
     }));
@@ -83,6 +76,8 @@ ListNode *findInList(LinkedList *list, void *find, bool compare(void *val, void 
      */
 }
 
+#pragma clang diagnostic pop
+
 LinkedList *removeInList(LinkedList *list, ListNode *node) {
     if (node == list->head) {
         list->head = node->next;
@@ -95,12 +90,13 @@ LinkedList *removeInList(LinkedList *list, ListNode *node) {
         node->prev->next = node->next;
     }
 
+    list->count--;
     free(node);
 
     return list;
 }
 
-ListNode *traverseList(LinkedList *list, bool returnHere(int index, ListNode *node)) {
+ListNode *traverseList(LinkedList *list, bool returnHere(int, ListNode *)) {
     ListNode *ptr = list->head;
     int i = 0;
     while (ptr != NULL) {

@@ -18,16 +18,14 @@ typedef struct linkedList {
  */
 LinkedList *createList();
 
-LinkedList *createListFromArray(void** array, int length, size_t size);
-
-LinkedList *addToList(LinkedList *list, void* data, size_t size);
+LinkedList *addToList(LinkedList *list, void *data, size_t size);
 
 /*
  * Add a node at last
  */
 LinkedList *addLastToList(LinkedList *list, void *data, size_t size);
 
-ListNode *findInList(LinkedList *list, void *find, bool compare(void *val, void *this));
+ListNode *findInList(LinkedList *list, void *find, bool compare(void *, void *));
 
 LinkedList *removeInList(LinkedList *list, ListNode *node);
 
@@ -40,6 +38,6 @@ LinkedList *removeInList(LinkedList *list, ListNode *node);
  *      return if it will be continued.
  * return void.
  */
-ListNode *traverseList(LinkedList *list, bool returnHere(int index, ListNode *node));
+ListNode *traverseList(LinkedList *list, bool returnHere(int, ListNode *));
 
 #endif // LINKED_LIST_H

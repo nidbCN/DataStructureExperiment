@@ -2,7 +2,7 @@
 #define BINARY_TREE_H
 
 typedef struct treeNode {
-    void* data;
+    void *data;
     struct treeNode *leftChild;
     struct treeNode *rightChild;
 } TreeNode;
@@ -11,9 +11,6 @@ typedef struct binaryTree {
     TreeNode *root;
     size_t dataSize;
 } BinaryTree;
-
-
-#define lambda(name),(arg)->(func) void*name(arg){func}
 
 /*
  * Create a binary tree with data which has size 'size'.
@@ -27,20 +24,20 @@ BinaryTree *createBinaryTree(void *dataInvoke(), size_t size);
  * *tree: Tree struct pointer;
  * *invoke(): A function provide output of data;
  */
-void preOrderTree(BinaryTree *tree, void* invoke());
+void preOrderTree(BinaryTree *tree, void invoke());
 
 /*
  * In-order the binary tree.
  * *tree: Tree struct pointer;
  * *invoke(): A function provide output of data;
  */
-void inOrderTree(BinaryTree *tree, void* invoke());
+void inOrderTree(BinaryTree *tree, void invoke());
 
 /*
  * Post-order the binary tree.
  * *tree: Tree struct pointer;
  * *invoke(): A function provide output of data;
  */
-void postOrderTree(BinaryTree *tree, void* invoke());
+void postOrderTree(BinaryTree *tree, void invoke());
 
 #endif

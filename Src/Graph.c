@@ -18,19 +18,19 @@ Graph *insertEdgeToGraph(Graph *graph, int nodeNum, int nextNodeNum) {
     return graph;
 }
 
-Graph *createGraph(int nodeCount, void *nodeDataInvoke(int index), int *edgeDataInvoke(), size_t size) {
+Graph *createGraph(int nodeCount, void *nodeDataInvoke(int index), int* edgeDataInvoke(), size_t size) {
     Graph *newGraph = new(Graph);
 
     // Create a vertex node array.
-    VertexNode newNodeArray[nodeCount];
-
-    newGraph->nodeCount = nodeCount;
-    newGraph->vertexArray = newNodeArray;
+    VertexNode* newNodeArray = array(VertexNode, nodeCount);
 
     // input node
     for (int i = 0; i < nodeCount; ++i) {
         memcpy(&newNodeArray[i], nodeDataInvoke(i), size);
     }
+
+    newGraph->nodeCount = nodeCount;
+    newGraph->vertexArray = newNodeArray;
 
     // input edge
     while (true) {

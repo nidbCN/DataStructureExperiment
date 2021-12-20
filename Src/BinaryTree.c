@@ -13,13 +13,13 @@
 TreeNode *createBinaryTreeNode(void *dataInvoke(), size_t size);
 
 // Pre-order from root ListNode
-void preOrderNode(TreeNode *node, void *invoke(void *data));
+void preOrderNode(TreeNode *node, void invoke(void *data));
 
 // In-order from root ListNode
-void inOrderNode(TreeNode *node, void *invoke(void *data));
+void inOrderNode(TreeNode *node, void invoke(void *data));
 
 // Post-order from root ListNode
-void postOrderNode(TreeNode *node, void *invoke(void *data));
+void postOrderNode(TreeNode *node, void invoke(void *data));
 
 // Create binary tree
 BinaryTree *createBinaryTree(void *dataInvoke(), size_t size) {
@@ -50,7 +50,7 @@ TreeNode *createBinaryTreeNode(void *dataInvoke(), size_t size) {
     return newNode;
 }
 
-void preOrderNode(TreeNode *node, void *invoke(void *data)) {
+void preOrderNode(TreeNode *node, void invoke(void *)) {
     if (node != NULL) {
         // Output value of this ListNode
         invoke(node->data);
@@ -60,13 +60,13 @@ void preOrderNode(TreeNode *node, void *invoke(void *data)) {
     }
 }
 
-void preOrderTree(BinaryTree *tree, void *invoke()) {
+void preOrderTree(BinaryTree *tree, void invoke()) {
     if (tree != NULL) {
         preOrderNode(tree->root, invoke);
     }
 }
 
-void inOrderNode(TreeNode *node, void *invoke(void *data)) {
+void inOrderNode(TreeNode *node, void invoke(void *)) {
     if (node != NULL) {
         inOrderNode(node->leftChild, invoke);
 
@@ -77,13 +77,13 @@ void inOrderNode(TreeNode *node, void *invoke(void *data)) {
     }
 }
 
-void inOrderTree(BinaryTree *tree, void *invoke()) {
+void inOrderTree(BinaryTree *tree, void invoke()) {
     if (tree != NULL) {
         inOrderNode(tree->root, invoke);
     }
 }
 
-void postOrderNode(TreeNode *node, void *invoke(void *data)) {
+void postOrderNode(TreeNode *node, void invoke(void *)) {
     if (node != NULL) {
         postOrderNode(node->leftChild, invoke);
         postOrderNode(node->rightChild, invoke);
@@ -93,7 +93,7 @@ void postOrderNode(TreeNode *node, void *invoke(void *data)) {
     }
 }
 
-void postOrderTree(BinaryTree *tree, void *invoke()) {
+void postOrderTree(BinaryTree *tree, void invoke()) {
     if (tree != NULL) {
         postOrderNode(tree->root, invoke);
     }
