@@ -4,21 +4,22 @@
 #include "DataStructureUtil.h"
 #include "LinkedList.h"
 
-LinkedList *createList() {
+LinkedList *_createList(size_t size) {
     LinkedList *list = new(LinkedList);
 
     list->head = NULL;
     list->tail = NULL;
     list->count = 0;
+    list->size = size;
 
     return list;
 }
 
-LinkedList *addToList(LinkedList *list, void *data, size_t size) {
+LinkedList *addToList(LinkedList *list, void *data) {
     ListNode *newNode = new(ListNode);
 
-    newNode->data = malloc(size);
-    memcpy(newNode->data, data, size);
+    newNode->data = malloc(list->size);
+    memcpy(newNode->data, data, list->size);
     newNode->next = list->head;
     newNode->prev = NULL;
 
@@ -32,11 +33,11 @@ LinkedList *addToList(LinkedList *list, void *data, size_t size) {
     return list;
 }
 
-LinkedList *addLastToList(LinkedList *list, void *data, size_t size) {
+LinkedList *addLastToList(LinkedList *list, void *data) {
     ListNode *newNode = new(ListNode);
 
-    newNode->data = malloc(size);
-    memcpy(newNode->data, data, size);
+    newNode->data = malloc(list->size);
+    memcpy(newNode->data, data, list->size);
     newNode->next = NULL;
 
     if (list->tail == NULL) {

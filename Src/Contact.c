@@ -61,7 +61,7 @@ void printAllContact(LinkedList *list) {
 }
 
 int main() {
-    LinkedList *list = createList();
+    LinkedList *list = _createList();
 
     while (true) {
         printf("%s\n", "A: Add, D: delete, F: find by name, P: print all, Q: quit");

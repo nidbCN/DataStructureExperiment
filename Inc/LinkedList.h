@@ -11,19 +11,25 @@ typedef struct linkedList {
     ListNode *head;
     ListNode *tail;
     int count;
+    size_t size;
 } LinkedList;
 
+#define createList(T) (_createList(sizeof(T)))
+
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "bugprone-reserved-identifier"
 /*
  * Create a new LinkedList
  */
-LinkedList *createList();
+LinkedList *_createList(size_t size);
+#pragma clang diagnostic pop
 
-LinkedList *addToList(LinkedList *list, void *data, size_t size);
+LinkedList *addToList(LinkedList *list, void *data);
 
 /*
  * Add a node at last
  */
-LinkedList *addLastToList(LinkedList *list, void *data, size_t size);
+LinkedList *addLastToList(LinkedList *list, void *data);
 
 ListNode *findInList(LinkedList *list, void *find, bool compare(void *, void *));
 
