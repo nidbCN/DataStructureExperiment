@@ -1,8 +1,7 @@
-//
-// Created by Gaein_nidb on 2021/12/10.
-//
-
 #ifndef SORT_H
 #define SORT_H
+
+#define SORT_DESC (0)
+#define SORT_ASC (1)
 
 #endif //SORT_H

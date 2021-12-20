@@ -7,7 +7,7 @@
 
 typedef struct edgeNode {
     void *data;
-    struct edgeNode *next;
+    LinkedList *next;
 } EdgeNode;
 
 typedef struct vertexNode {
@@ -18,10 +18,16 @@ typedef struct vertexNode {
 typedef struct graph {
     VertexNode vertexNodes;
     VertexNode vertex[MAX];
+
     VertexNode *vertexArray;
 
     int nodeCount;
     int e;
 } Graph;
+
+// 插入边
+Graph *insertEdgeToGraph(Graph *graph, int nodeNum, int nextNodeNum);
+
+Graph *createGraph(int nodeCount, int edgeCount, void *nodeDataInvoke(), int *edgeDataInvoke(), size_t size);
 
 #endif //GRAPH_H

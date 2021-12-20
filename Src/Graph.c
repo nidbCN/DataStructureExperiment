@@ -2,54 +2,65 @@
 #include <string.h>
 #include "Graph.h"
 #include "DataStructureUtil.h"
+#include "LinkedList.h"
 #include <malloc.h>
-
-Graph graph;
+#include <stdbool.h>
 
 int visited[MAX];
 
-Graph* createGraph(int count) {
-    Graph* newGraph = new(Graph);
+Graph *insertEdgeToGraph(Graph *graph, int nodeNum, int nextNodeNum) {
+    EdgeNode *newNode = new(EdgeNode);
+
+    newNode->next = graph->vertexArray[nextNodeNum - 1].edgeList;
+
+    addToList(graph->vertexArray[nodeNum - 1].edgeList, (void *) newNode, sizeof(EdgeNode));
+
+    return graph;
+}
+
+Graph *createGraph(int nodeCount, void *nodeDataInvoke(int index), int *edgeDataInvoke(), size_t size) {
+    Graph *newGraph = new(Graph);
 
     // Create a vertex node array.
-    VertexNode newNodeArray[count];
-    memset(newNodeArray, new(VertexNode), sizeof(VertexNode));
+    VertexNode newNodeArray[nodeCount];
 
-    newGraph->nodeCount = count;
+    newGraph->nodeCount = nodeCount;
     newGraph->vertexArray = newNodeArray;
+
+    // input node
+    for (int i = 0; i < nodeCount; ++i) {
+        memcpy(&newNodeArray[i], nodeDataInvoke(i), size);
+    }
+
+    // input edge
+    while (true) {
+        void *edgeData = edgeDataInvoke();
+        if (edgeData == NULL)
+            break;
+
+        int node_i = *(int *) edgeData;
+        int node_j = *((int *) edgeData + 1);
+
+        if (node_j > nodeCount || node_j > nodeCount) {
+            return NULL;
+        }
+
+        insertEdgeToGraph(newGraph, node_i, node_j);
+    }
 
     return newGraph;
 }
 
-void insert(int index, void *data) {
-    EdgeNode *newNode = new(EdgeNode);
-    newNode->data = data;
-    //前插
-    newNode->next = graph.vertex[index].firstEdge;
-    graph.vertex[index].firstEdge = newNode;
+void depthFirstSearch(Graph *graph, void *func()) {
+    bool visited[1000];
 }
 
-void Create() {
-    EdgeNode *node;
-    int i, j, n, e;
-    scanf("%d%d", &n, &e); //输入n 个节点
-    graph.nodeCount = n;
-    graph.e = e;
-    //初始化表头信息
-    for (i = 0; i < n; i++) {
-        graph.vertex[i].firstEdge = NULL;
-    }
+void depthFirstSearchInvoke(Graph *graph, void *func()) {
 
-    //输入 无向边<i,j>从 0 开始
-    while (e--) {
-        scanf("%d%d", &i, &j);
-        if (i == 0 && j == 0)
-            break;
-        if (i >= n || j >= n)
-            printf("有不存在的点，请重新输入\n");
-        insert(i, j);
-        insert(j, i);
-    }
+}
+
+void breadthFirstSearch() {
+
 }
 
 void dfs(Graph g, int i) {
