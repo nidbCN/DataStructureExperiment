@@ -48,13 +48,16 @@ void deleteContactByName(LinkedList *list, const char *name) {
 }
 
 void printAllContact(LinkedList *list) {
-    traverseList(list, $(bool, (int index, ListNode *node){return true;}));
+    traverseList(list, $(bool, (int index, ListNode *node){
+            printf("[%d]%s:\t%s\n", index, ((Student *) (node->data))->name, ((Student *) (node->data))->phone);
+            return true;
+    }));
 
+    /*
     for (ListNode *pointer = list->head; pointer != NULL; pointer = pointer->next) {
         Student *stu = (Student *) (pointer->data);
-
-        printf("%s:\t%s\n", stu->name, stu->phone);
     }
+    */
 }
 
 int main() {
