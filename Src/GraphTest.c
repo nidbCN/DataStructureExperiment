@@ -35,12 +35,12 @@ int main() {
     printf("%s\n", "DFS:");
     depthFirstSearch(graph, $(void, (int num, void* data){
             char val = *(char*)data;
-            printf("node %d: %c\n", num, val);
+            printf("node %d: %c\n", num + 1, val);
     }));
 
     printf("%s\n", "BFS:");
     breadthFirstSearch(graph, $(void, (int num, void* data){
             char val = *(char*)data;
-            printf("node %d: %c\n", num, val);
+            printf("node %d: %c\n", num + 1, val);
     }));
 }
