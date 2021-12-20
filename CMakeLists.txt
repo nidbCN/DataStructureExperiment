@@ -5,8 +5,9 @@ set(CMAKE_C_STANDARD 99)
 
 add_library(BinaryTree STATIC Src/BinaryTree.c)
 add_library(LinkedList STATIC Src/LinkedList.c)
-add_library(Graph STATIC Src/Graph.c Src/Queue.c Inc/Queue.h)
-add_library(Sort STATIC Src/Graph.c Src/Sort.c Inc/Sort.h)
+add_library(Queue STATIC Src/Queue.c)
+add_library(Graph STATIC Src/Graph.c)
+add_library(Sort STATIC Src/Sort.c)
 
 include_directories(Inc)
 
@@ -15,3 +16,5 @@ TARGET_LINK_LIBRARIES(BinaryTreeTest BinaryTree)
 
 add_executable(Contact Src/Contact.c Src/DataStructureUtil.c)
 TARGET_LINK_LIBRARIES(Contact LinkedList)
+
+TARGET_LINK_LIBRARIES(Graph Queue)
