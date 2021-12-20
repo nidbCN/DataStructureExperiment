@@ -9,18 +9,19 @@ LinkedList *createList() {
 
     list->head = NULL;
     list->tail = NULL;
+    list->count = 0;
 
     return list;
 }
 
-LinkedList *createListFromArray(void **array, int length, size_t sizeOfElement) {
+LinkedList *createListFromArray(void **array, int length, size_t size) {
     LinkedList *list = new(LinkedList);
 
     list->head = NULL;
     list->tail = NULL;
 
     for (int i = 0; i < length; ++i) {
-        addLastToList(list, array[i], sizeOfElement);
+        addLastToList(list, array[i], size);
     }
 
     return list;
@@ -65,15 +66,21 @@ LinkedList *addLastToList(LinkedList *list, void *data, size_t size) {
     return list;
 }
 
-ListNode *findInList(LinkedList *list, void *find, void *compare(void *val, void *node)) {
+ListNode *findInList(LinkedList *list, void *find, bool compare(void *val, void *node)) {
+    return traverseList(list, $(bool, (int index, ListNode *thisNode){
+            return compare(find, thisNode->data);
+    }));
+
+    /*
     for (ListNode *pointer = list->head; pointer != NULL; pointer = pointer->next) {
-        bool result = *((bool *) compare(find, pointer->data));
+        bool result = compare(find, pointer->data);
 
         if (result == true)
             return pointer;
     }
 
     return NULL;
+     */
 }
 
 LinkedList *removeInList(LinkedList *list, ListNode *node) {
@@ -91,4 +98,19 @@ LinkedList *removeInList(LinkedList *list, ListNode *node) {
     free(node);
 
     return list;
+}
+
+ListNode *traverseList(LinkedList *list, bool returnHere(int index, ListNode *node)) {
+    ListNode *ptr = list->head;
+    int i = 0;
+    while (ptr != NULL) {
+        if (!returnHere(i, ptr)) {
+            return ptr;
+        }
+
+        ptr = ptr->next;
+        ++i;
+    }
+
+    return NULL;
 }
