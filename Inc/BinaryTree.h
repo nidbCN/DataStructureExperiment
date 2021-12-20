@@ -25,22 +25,22 @@ BinaryTree *createBinaryTree(void *dataInvoke(), size_t size);
 /*
  * Pre-order the binary tree.
  * *tree: Tree struct pointer;
- * *outputInvoke(): A function provide output of data;
+ * *invoke(): A function provide output of data;
  */
-void preOrderTree(BinaryTree *tree, void* outputInvoke());
+void preOrderTree(BinaryTree *tree, void* invoke());
 
 /*
  * In-order the binary tree.
  * *tree: Tree struct pointer;
- * *outputInvoke(): A function provide output of data;
+ * *invoke(): A function provide output of data;
  */
-void inOrderTree(BinaryTree *tree, void* outputInvoke());
+void inOrderTree(BinaryTree *tree, void* invoke());
 
 /*
  * Post-order the binary tree.
  * *tree: Tree struct pointer;
- * *outputInvoke(): A function provide output of data;
+ * *invoke(): A function provide output of data;
  */
-void postOrderTree(BinaryTree *tree, void* outputInvoke());
+void postOrderTree(BinaryTree *tree, void* invoke());
 
 #endif
