@@ -7,6 +7,7 @@
 LinkedList *_createList(size_t size) {
     LinkedList *list = new(LinkedList);
 
+    // init struct
     list->head = NULL;
     list->tail = NULL;
     list->count = 0;
@@ -18,15 +19,18 @@ LinkedList *_createList(size_t size) {
 LinkedList *addToList(LinkedList *list, void *data) {
     ListNode *newNode = new(ListNode);
 
+    // init list node
     newNode->data = malloc(list->size);
     memcpy(newNode->data, data, list->size);
     newNode->next = list->head;
     newNode->prev = NULL;
 
-    if (list->tail == NULL) {
+    // point tail to new node
+    if (list->count == 0) {
         list->tail = newNode;
     }
 
+    // add at head
     list->head = newNode;
     list->count++;
 
@@ -36,16 +40,17 @@ LinkedList *addToList(LinkedList *list, void *data) {
 LinkedList *addLastToList(LinkedList *list, void *data) {
     ListNode *newNode = new(ListNode);
 
+    // init list node
     newNode->data = malloc(list->size);
     memcpy(newNode->data, data, list->size);
     newNode->next = NULL;
 
-    if (list->tail == NULL) {
+    if (list->count == 0) {     // empty list
         newNode->prev = NULL;
 
         list->head = newNode;
         list->tail = newNode;
-    } else {
+    } else {    // normal list
         newNode->prev = list->tail;
 
         list->tail->next = newNode;
@@ -80,10 +85,10 @@ ListNode *findInList(LinkedList *list, void *find, bool compare(void *, void *))
 #pragma clang diagnostic pop
 
 LinkedList *removeInList(LinkedList *list, ListNode *node) {
-    if (node == list->head) {
+    if (node == list->head) {       // at head
         list->head = node->next;
         list->head->prev = NULL;
-    } else if (node == list->tail) {
+    } else if (node == list->tail) {    // at end
         list->tail = node->prev;
         list->tail->next = NULL;
     } else {
@@ -105,6 +110,7 @@ ListNode *traverseList(LinkedList *list, bool returnHere(int, ListNode *)) {
             return ptr;
         }
 
+        // go next node
         ptr = ptr->next;
         ++i;
     }

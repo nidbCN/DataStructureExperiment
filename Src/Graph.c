@@ -37,12 +37,14 @@ Graph *insertEdgeToGraph(Graph *graph, int nodeNum, int nextNodeNum) {
     int *index = new(int);
     *index = nextNodeNum - 1;
 
+    // add edge to node's linkedList
     addToList(graph->nodeArray[nodeNum - 1]->nodeList, (void *) index);
 
     return graph;
 }
 
 void depthFirstSearch(Graph *graph, void func(int, void *)) {
+    // visit records
     bool *visited = array(bool, graph->nodeCount);
     memset(visited, false, sizeof(bool) * graph->nodeCount);
 
@@ -62,7 +64,8 @@ void depthFirstSearchInvoke(Graph *graph, int index, bool *visited, void func(in
             if (!visited[nodeIndex]) {
             func(nodeIndex, graph->nodeArray[nodeIndex]->data);
             visited[nodeIndex] = true;
-            depthFirstSearchInvoke(graph, nodeIndex, visited, func);
+
+            depthFirstSearchInvoke(graph, nodeIndex, visited, func);// visit next node
     }
             return false;
     }));
@@ -82,7 +85,7 @@ void breadthFirstSearch(Graph *graph, void func(int, void *)) {
 }
 
 void breadthFirstSearchInvoke(Graph *graph, int index, bool *visited, void func(int, void *)) {
-
+    // init a queue
     Queue *queue = createQueue(int);
 
     // first node, storage index to queue
@@ -94,6 +97,7 @@ void breadthFirstSearchInvoke(Graph *graph, int index, bool *visited, void func(
         int dequeueNodeIndex = *(int *) dequeue(queue);
         LinkedList *nodeList = graph->nodeArray[dequeueNodeIndex]->nodeList;
 
+        // read all nodes in node list
         traverseList(nodeList, $(bool, (int listIndex, ListNode* thisNode) {
                 int nodeIndex = *(int*)(thisNode->data ) -1;
                 if (!visited[nodeIndex]) {
