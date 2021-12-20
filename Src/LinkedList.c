@@ -4,24 +4,6 @@
 #include "DataStructureUtil.h"
 #include "LinkedList.h"
 
-#define lambda(return_type, function_body) \
-({ \
-      return_type $this function_body \
-      $this; \
-})
-#define $ lambda
-
-/*
- * Traverse the LinkedList
- * list: LinkedList struct pointer;
- * returnHere: Operate the node, and return if it will be continued.
- *      index: Current index of node;
- *      node: Current node struct pointer;
- *      return if it will be continued.
- * return void.
- */
-ListNode *traverse(LinkedList *list, bool returnHere(int index, ListNode *node));
-
 LinkedList *createList() {
     LinkedList *list = new(LinkedList);
 
@@ -68,7 +50,7 @@ LinkedList *addLastToList(LinkedList *list, void *data, size_t size) {
 }
 
 ListNode *findInList(LinkedList *list, void *find, bool compare(void *val, void *node)) {
-    return traverse(list, $(bool, (int index, ListNode *thisNode){
+    return traverseList(list, $(bool, (int index, ListNode *thisNode){
             return compare(find, thisNode->data);
     }));
 
@@ -101,7 +83,7 @@ LinkedList *removeInList(LinkedList *list, ListNode *node) {
     return list;
 }
 
-ListNode *traverse(LinkedList *list, bool returnHere(int index, ListNode *node)) {
+ListNode *traverseList(LinkedList *list, bool returnHere(int index, ListNode *node)) {
     ListNode *ptr = list->head;
     int i = 0;
     while (ptr != NULL) {

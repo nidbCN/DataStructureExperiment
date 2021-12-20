@@ -29,4 +29,15 @@ ListNode *findInList(LinkedList *list, void *find, bool compare(void *val, void 
 
 LinkedList *removeInList(LinkedList *list, ListNode *node);
 
+/*
+ * Traverse the LinkedList
+ * list: LinkedList struct pointer;
+ * returnHere: Operate the node, and return if it will be continued.
+ *      index: Current index of node;
+ *      node: Current node struct pointer;
+ *      return if it will be continued.
+ * return void.
+ */
+ListNode *traverseList(LinkedList *list, bool returnHere(int index, ListNode *node));
+
 #endif // LINKED_LIST_H

@@ -6,16 +6,14 @@
 #include "LinkedList.h"
 #include "Contact.h"
 
-LinkedList *list;
-
 bool findInvoke(void *find, void *node) {
     Student *student = (Student *) find;
     Student *current = (Student *) node;
 
-    return (bool)strcmp(student->name, current->name);
+    return (bool) strcmp(student->name, current->name);
 }
 
-void findContactByName(const char *name) {
+void findContactByName(LinkedList *list, const char *name) {
     Student *toFind = new(Student);
     strcpy(toFind->name, name);
 
@@ -30,7 +28,7 @@ void findContactByName(const char *name) {
     }
 }
 
-void addContact(const char *name, const char *phone) {
+void addContact(LinkedList *list, const char *name, const char *phone) {
     Student *stu = new(Student);
     strcpy(stu->name, name);
     strcpy(stu->phone, phone);
@@ -38,7 +36,7 @@ void addContact(const char *name, const char *phone) {
     addLastToList(list, (void *) stu, sizeof(Student));
 }
 
-void deleteContactByName(const char *name) {
+void deleteContactByName(LinkedList *list, const char *name) {
     Student *toFind = new(Student);
     strcpy(toFind->name, name);
 
@@ -49,7 +47,9 @@ void deleteContactByName(const char *name) {
     }
 }
 
-void printAllContact() {
+void printAllContact(LinkedList *list) {
+    traverseList(list, $(bool, (int index, ListNode *node){return true;}));
+
     for (ListNode *pointer = list->head; pointer != NULL; pointer = pointer->next) {
         Student *stu = (Student *) (pointer->data);
 
@@ -58,7 +58,7 @@ void printAllContact() {
 }
 
 int main() {
-    list = createList();
+    LinkedList *list = createList();
 
     while (true) {
         printf("%s\n", "A: Add, D: delete, F: find by name, P: print all, Q: quit");
@@ -76,22 +76,22 @@ int main() {
                 printf("%s\n", "Input \"name phone\"");
                 scanf("%s %s", inputName, inputPhone);
 
-                addContact(inputName, inputPhone);
+                addContact(list, inputName, inputPhone);
                 break;
             case 'D':
                 printf("%s\n", "Input \"name\"");
                 scanf("%s", inputName);
 
-                deleteContactByName(inputName);
+                deleteContactByName(list, inputName);
                 break;
             case 'F':
                 printf("%s\n", "Input \"name\"");
                 scanf("%s", inputName);
 
-                findContactByName(inputName);
+                findContactByName(list, inputName);
                 break;
             case 'P':
-                printAllContact();
+                printAllContact(list);
                 break;
             case 'Q':
                 return 0;
