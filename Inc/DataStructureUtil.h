@@ -7,7 +7,9 @@
       $this; \
 })
 #define $ lambda
+
 #define new(T) ((T*)malloc(sizeof(T)))
+#define array(T, length) ((T*)malloc(sizeof(T) * (length)))
 
 #include <stdbool.h>
 
