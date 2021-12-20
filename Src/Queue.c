@@ -2,7 +2,7 @@
 #include "Queue.h"
 #include "DataStructureUtil.h"
 
-Queue *_create(size_t size) {
+Queue *_createQueue(size_t size) {
     Queue *newQueue = new(Queue);
     newQueue->head = NULL;
     newQueue->count = 0;

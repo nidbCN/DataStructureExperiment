@@ -16,9 +16,9 @@ typedef struct queue {
     size_t size;
 } Queue;
 
-#define create(T) (_create(sizeof(T)))
+#define createQueue(T) (_createQueue(sizeof(T)))
 
-Queue *_create(size_t size);
+Queue *_createQueue(size_t size);
 
 void *dequeue(Queue *queue);
 

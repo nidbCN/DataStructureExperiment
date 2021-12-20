@@ -1,6 +1,9 @@
 #ifndef UTIL_H
 #define UTIL_H
 
+#include <malloc.h>
+#include <stdbool.h>
+
 #define lambda(return_type, function_body) \
 ({ \
       return_type $this function_body \
@@ -10,8 +13,6 @@
 
 #define new(T) ((T*)malloc(sizeof(T)))
 #define array(T, length) ((T*)malloc(sizeof(T) * (length)))
-
-#include <stdbool.h>
 
 /*
  * num 是奇数

@@ -18,10 +18,12 @@ typedef struct linkedList {
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "bugprone-reserved-identifier"
+
 /*
  * Create a new LinkedList
  */
 LinkedList *_createList(size_t size);
+
 #pragma clang diagnostic pop
 
 LinkedList *addToList(LinkedList *list, void *data);

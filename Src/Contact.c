@@ -33,7 +33,7 @@ void addContact(LinkedList *list, const char *name, const char *phone) {
     strcpy(stu->name, name);
     strcpy(stu->phone, phone);
 
-    addLastToList(list, (void *) stu, sizeof(Student));
+    addLastToList(list, (void *) stu);
 }
 
 void deleteContactByName(LinkedList *list, const char *name) {
@@ -61,7 +61,7 @@ void printAllContact(LinkedList *list) {
 }
 
 int main() {
-    LinkedList *list = _createList();
+    LinkedList *list = createList(Student);
 
     while (true) {
         printf("%s\n", "A: Add, D: delete, F: find by name, P: print all, Q: quit");
@@ -98,11 +98,8 @@ int main() {
                 break;
             case 'Q':
                 return 0;
-                break;
             default:
                 printf("%s\n", "UnKnow command");
         }
     }
-
-    return 0;
 }
