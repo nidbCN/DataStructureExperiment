@@ -13,8 +13,8 @@ Queue *_createQueue(size_t size) {
 void *dequeue(Queue *queue) {
     QueueNode *node = queue->head;
 
-    queue->head = node->next;
     queue->head->prev = NULL;
+    queue->head = node->next;
 
     void *result = node->data;
     node->prev = NULL;
@@ -28,6 +28,7 @@ void *dequeue(Queue *queue) {
 
 void enqueue(Queue *queue, void *data) {
     QueueNode *node = new(QueueNode);
+    node->data = malloc(queue->size);
 
     memcpy(node->data, data, queue->size);
     node->next = NULL;

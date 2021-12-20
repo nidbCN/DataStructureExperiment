@@ -5,7 +5,13 @@
 void *getNodeData(int number) {
     printf("Please input data of node %d:\n", number);
     char *data = new(char);
-    scanf("%d", data);
+    char dataRead;
+    do {
+        dataRead = getchar();
+    } while (dataRead == '\n');
+
+    *data = dataRead;
+
     return (void *) data;
 }
 
@@ -21,18 +27,20 @@ int main() {
     for (int i = 0; i < edgeCount; ++i) {
         int start = 0;
         int end = 0;
-        printf("%s", "Please input \"startNode endNode\" of edge:");
+        printf("%s\n", "Please input \"startNode endNode\" of edge:");
         scanf("%d %d", &start, &end);
+        insertEdgeToGraph(graph, start, end);
     }
 
     printf("%s\n", "DFS:");
-    depthFirstSearch(graph, $(void*, (int num, void* data){
+    depthFirstSearch(graph, $(void, (int num, void* data){
             char val = *(char*)data;
-            printf("node %d: %c", num, val);
+            printf("node %d: %c\n", num, val);
     }));
 
-    breadthFirstSearch(graph, $(void*, (int num, void* data){
+    printf("%s\n", "BFS:");
+    breadthFirstSearch(graph, $(void, (int num, void* data){
             char val = *(char*)data;
-            printf("node %d: %c", num, val);
+            printf("node %d: %c\n", num, val);
     }));
 }

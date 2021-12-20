@@ -22,7 +22,7 @@ Graph *_createGraph(int nodeCount, void *nodeDataInvoke(int), size_t size);
 
 Graph *insertEdgeToGraph(Graph *graph, int nodeNum, int nextNodeNum);
 
-void depthFirstSearch(Graph *graph, void *func(int, void*));
+void depthFirstSearch(Graph *graph, void func(int, void*));
 
 void breadthFirstSearch(Graph *graph, void func(int, void*));
 

@@ -1,6 +1,8 @@
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 
+#include <stdbool.h>
+
 typedef struct listNode {
     void *data;
     struct listNode *next;
@@ -24,7 +26,6 @@ typedef struct linkedList {
  */
 LinkedList *_createList(size_t size);
 
-#pragma clang diagnostic pop
 
 LinkedList *addToList(LinkedList *list, void *data);
 
