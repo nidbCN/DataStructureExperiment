@@ -5,7 +5,7 @@ set(CMAKE_C_STANDARD 99)
 
 add_library(BinaryTree STATIC Src/BinaryTree.c)
 add_library(LinkedList STATIC Src/LinkedList.c)
-add_library(Graph STATIC Src/Graph.c)
+add_library(Graph STATIC Src/Graph.c Src/Queue.c Inc/Queue.h)
 add_library(Sort STATIC Src/Graph.c Src/Sort.c Inc/Sort.h)
 
 include_directories(Inc)
