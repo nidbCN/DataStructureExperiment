@@ -73,7 +73,7 @@ int main() {
 
         switch (op) {
             case 'A':
-                printf("%s\n", "Input \"phone name\"");
+                printf("%s\n", "Input \"name phone\"");
                 scanf("%s %s", inputName, inputPhone);
 
                 addContact(inputName, inputPhone);
