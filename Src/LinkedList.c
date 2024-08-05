@@ -4,7 +4,7 @@
 #include "DataStructureUtil.h"
 #include "LinkedList.h"
 
-LinkedList *_createList(size_t size) {
+LinkedList *_createLinkedList(size_t size) {
     LinkedList *list = new(LinkedList);
 
     // init struct
@@ -16,7 +16,7 @@ LinkedList *_createList(size_t size) {
     return list;
 }
 
-LinkedList *addToList(LinkedList *list, void *data) {
+LinkedList *addToLinkedList(LinkedList *list, void *data) {
     ListNode *newNode = new(ListNode);
 
     // init list node
@@ -37,7 +37,7 @@ LinkedList *addToList(LinkedList *list, void *data) {
     return list;
 }
 
-LinkedList *addLastToList(LinkedList *list, void *data) {
+LinkedList *addLastToLinkedList(LinkedList *list, void *data) {
     ListNode *newNode = new(ListNode);
 
     // init list node
@@ -65,8 +65,8 @@ LinkedList *addLastToList(LinkedList *list, void *data) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused-parameter"
 
-ListNode *findInList(LinkedList *list, void *find, bool compare(void *, void *)) {
-    return traverseList(list, $(bool, (int index, ListNode *thisNode){
+ListNode *findInLinkedList(LinkedList *list, void *find, bool compare(void *, void *)) {
+    return traverseLinkedList(list, $(bool, (int index, ListNode *thisNode){
             return compare(find, thisNode->data);
     }));
 
@@ -84,7 +84,7 @@ ListNode *findInList(LinkedList *list, void *find, bool compare(void *, void *))
 
 #pragma clang diagnostic pop
 
-LinkedList *removeInList(LinkedList *list, ListNode *node) {
+LinkedList *removeInLinkedList(LinkedList *list, ListNode *node) {
     if (node == list->head) {       // at head
         list->head = node->next;
         list->head->prev = NULL;
@@ -102,7 +102,7 @@ LinkedList *removeInList(LinkedList *list, ListNode *node) {
     return list;
 }
 
-ListNode *traverseList(LinkedList *list, bool returnHere(int, ListNode *)) {
+ListNode *traverseLinkedList(LinkedList *list, bool returnHere(int, ListNode *)) {
     ListNode *ptr = list->head;
     int i = 0;
     while (ptr != NULL) {

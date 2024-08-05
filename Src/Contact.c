@@ -17,7 +17,7 @@ void findContactByName(LinkedList *list, const char *name) {
     Student *toFind = new(Student);
     strcpy(toFind->name, name);
 
-    ListNode *result = findInList(list, toFind, findInvoke);
+    ListNode *result = findInLinkedList(list, toFind, findInvoke);
 
     if (result == NULL) {
         printf("%s\n", "Not Found!");
@@ -33,22 +33,22 @@ void addContact(LinkedList *list, const char *name, const char *phone) {
     strcpy(stu->name, name);
     strcpy(stu->phone, phone);
 
-    addLastToList(list, (void *) stu);
+    addLastToLinkedList(list, (void *) stu);
 }
 
 void deleteContactByName(LinkedList *list, const char *name) {
     Student *toFind = new(Student);
     strcpy(toFind->name, name);
 
-    ListNode *result = findInList(list, toFind, findInvoke);
+    ListNode *result = findInLinkedList(list, toFind, findInvoke);
 
     if (result != NULL) {
-        removeInList(list, result);
+        removeInLinkedList(list, result);
     }
 }
 
 void printAllContact(LinkedList *list) {
-    traverseList(list, $(bool, (int index, ListNode *node){
+    traverseLinkedList(list, $(bool, (int index, ListNode *node){
             printf("[%d]%s:\t%s\n", index, ((Student *) (node->data))->name, ((Student *) (node->data))->phone);
             return true;
     }));
@@ -61,7 +61,7 @@ void printAllContact(LinkedList *list) {
 }
 
 int main() {
-    LinkedList *list = createList(Student);
+    LinkedList *list = createLinkedList(Student);
 
     while (true) {
         printf("%s\n", "A: Add, D: delete, F: find by name, P: print all, Q: quit");

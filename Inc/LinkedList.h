@@ -21,7 +21,7 @@ typedef struct linkedList {
  * T: Type of each element;
  * return LinkedList*.
  */
-#define createList(T) (_createList(sizeof(T)))
+#define createLinkedList(T) (_createLinkedList(sizeof(T)))
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "bugprone-reserved-identifier"
@@ -31,7 +31,7 @@ typedef struct linkedList {
  * size: Size of each element;
  * return LinkedList*.
  */
-LinkedList *_createList(size_t size);
+LinkedList *_createLinkedList(size_t size);
 
 /*
  * Add a node at the beginning of LinkedList
@@ -39,7 +39,7 @@ LinkedList *_createList(size_t size);
  * data: The data pointer;
  * return LinkedList*.
  */
-LinkedList *addToList(LinkedList *list, void *data);
+LinkedList *addToLinkedList(LinkedList *list, void *data);
 
 /*
  * Add a node at the end of LinkedList
@@ -47,7 +47,7 @@ LinkedList *addToList(LinkedList *list, void *data);
  * data: The data pointer;
  * return LinkedList*.
  */
-LinkedList *addLastToList(LinkedList *list, void *data);
+LinkedList *addLastToLinkedList(LinkedList *list, void *data);
 
 /*
  * Find a node in LinkedList
@@ -58,7 +58,7 @@ LinkedList *addLastToList(LinkedList *list, void *data);
  *      this: current node;
  * return ListNode*.
  */
-ListNode *findInList(LinkedList *list, void *find, bool compare(void *, void *));
+ListNode *findInLinkedList(LinkedList *list, void *find, bool compare(void *, void *));
 
 /*
  * Remove a node in LinkedList
@@ -66,7 +66,7 @@ ListNode *findInList(LinkedList *list, void *find, bool compare(void *, void *))
  * node: ListNode to delete;
  * return LinkedList*.
  */
-LinkedList *removeInList(LinkedList *list, ListNode *node);
+LinkedList *removeInLinkedList(LinkedList *list, ListNode *node);
 
 /*
  * Traverse the LinkedList
@@ -77,6 +77,6 @@ LinkedList *removeInList(LinkedList *list, ListNode *node);
  *      return if it will be continued.
  * return void.
  */
-ListNode *traverseList(LinkedList *list, bool returnHere(int, ListNode *));
+ListNode *traverseLinkedList(LinkedList *list, bool returnHere(int, ListNode *));
 
 #endif // LINKED_LIST_H
