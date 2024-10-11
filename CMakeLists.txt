@@ -16,7 +16,8 @@ TARGET_LINK_LIBRARIES(Graph Queue)
 add_executable(BinaryTreeTest Src/BinaryTreeTest.c Src/DataStructureUtil.c)
 TARGET_LINK_LIBRARIES(BinaryTreeTest BinaryTree)
 
-add_executable(Contact Src/Contact.c Src/DataStructureUtil.c)
+add_executable(Contact Src/Contact.c Src/DataStructureUtil.c
+        Src/List.c)
 TARGET_LINK_LIBRARIES(Contact LinkedList)
 
 add_executable(GraphTest Src/GraphTest.c Src/DataStructureUtil.c)

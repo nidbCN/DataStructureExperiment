@@ -66,7 +66,7 @@ ListNode *findInLinkedList(LinkedList *list, void *find, bool compare(void *, vo
  * node: ListNode to delete;
  * return LinkedList*.
  */
-LinkedList *removeInLinkedList(LinkedList *list, ListNode *node);
+void *removeInLinkedList(LinkedList *list, ListNode *node);
 
 /*
  * Traverse the LinkedList
@@ -77,6 +77,6 @@ LinkedList *removeInLinkedList(LinkedList *list, ListNode *node);
  *      return if it will be continued.
  * return void.
  */
-ListNode *traverseLinkedList(LinkedList *list, bool returnHere(int, ListNode *));
+ListNode *traverseLinkedList(const LinkedList *list, const bool continueTraverse(int, ListNode *));
 
 #endif // LINKED_LIST_H

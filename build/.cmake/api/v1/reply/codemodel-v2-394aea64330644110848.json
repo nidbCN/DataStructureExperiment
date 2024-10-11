@@ -1,0 +1,132 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "DataStructure",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "BinaryTree::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-BinaryTree-Debug-fefe357b0b8b4345ee00.json",
+					"name" : "BinaryTree",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "BinaryTreeTest::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-BinaryTreeTest-Debug-882620c1df73f9a776cd.json",
+					"name" : "BinaryTreeTest",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "BookManager::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-BookManager-Debug-bafce86243c5f6ca1ac6.json",
+					"name" : "BookManager",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Contact::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Contact-Debug-08aa3d27f7d84e51b5e8.json",
+					"name" : "Contact",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Graph::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Graph-Debug-8ee38816598ca61d2b31.json",
+					"name" : "Graph",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "GraphTest::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-GraphTest-Debug-1dc087df2b7893af259c.json",
+					"name" : "GraphTest",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "LinkedList::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-LinkedList-Debug-a64bbacee8e1e54445fc.json",
+					"name" : "LinkedList",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Queue::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Queue-Debug-70ebe124356036b80b9a.json",
+					"name" : "Queue",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Sort::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Sort-Debug-5a56fd38fd643d559e0a.json",
+					"name" : "Sort",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Gaein/Documents/Codes/C_Projects/DataStructureExperiment/build",
+		"source" : "C:/Users/Gaein/Documents/Codes/C_Projects/DataStructureExperiment"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

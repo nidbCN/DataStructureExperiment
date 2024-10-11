@@ -45,12 +45,14 @@ LinkedList *addLastToLinkedList(LinkedList *list, void *data) {
     memcpy(newNode->data, data, list->size);
     newNode->next = NULL;
 
-    if (list->count == 0) {     // empty list
+    if (list->count == 0) {
+        // empty list
         newNode->prev = NULL;
 
         list->head = newNode;
         list->tail = newNode;
-    } else {    // normal list
+    } else {
+        // normal list
         newNode->prev = list->tail;
 
         list->tail->next = newNode;
@@ -67,8 +69,8 @@ LinkedList *addLastToLinkedList(LinkedList *list, void *data) {
 
 ListNode *findInLinkedList(LinkedList *list, void *find, bool compare(void *, void *)) {
     return traverseLinkedList(list, $(bool, (int index, ListNode *thisNode){
-            return compare(find, thisNode->data);
-    }));
+                                      return compare(find, thisNode->data);
+                                      }));
 
     /*
     for (ListNode *pointer = list->head; pointer != NULL; pointer = pointer->next) {
@@ -82,13 +84,26 @@ ListNode *findInLinkedList(LinkedList *list, void *find, bool compare(void *, vo
      */
 }
 
+// Not safe
+ListNode *getItemUncertainInLinkedList(void *item) {
+    return item;
+}
+
+ListNode *getItemAtLinkedList(LinkedList *list, int index) {
+    return traverseLinkedList(list, $(bool, (int thisIndex, ListNode* thisNode){
+                                      return thisIndex == index;
+                                      }));
+}
+
 #pragma clang diagnostic pop
 
-LinkedList *removeInLinkedList(LinkedList *list, ListNode *node) {
-    if (node == list->head) {       // at head
+void *removeInLinkedList(LinkedList *list, ListNode *node) {
+    if (node == list->head) {
+        // at head
         list->head = node->next;
         list->head->prev = NULL;
-    } else if (node == list->tail) {    // at end
+    } else if (node == list->tail) {
+        // at end
         list->tail = node->prev;
         list->tail->next = NULL;
     } else {
@@ -96,17 +111,19 @@ LinkedList *removeInLinkedList(LinkedList *list, ListNode *node) {
         node->prev->next = node->next;
     }
 
+    void *ptr = node->data;
     list->count--;
+
     free(node);
 
-    return list;
+    return ptr;
 }
 
-ListNode *traverseLinkedList(LinkedList *list, bool returnHere(int, ListNode *)) {
+ListNode *traverseLinkedList(const LinkedList *list, const bool continueTraverse(int, ListNode *)) {
     ListNode *ptr = list->head;
     int i = 0;
     while (ptr != NULL) {
-        if (!returnHere(i, ptr)) {
+        if (!continueTraverse(i, ptr)) {
             return ptr;
         }
 
